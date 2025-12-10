@@ -132,7 +132,7 @@ function login(){
   const ok=USERS.find(x=>x.u===userInput && x.p===passInput);
   if(ok){
     document.getElementById("loginBox").style.display="none";
-    localStorage.setItem("loggedIn","yes");
+    localStorage.setItem("loggedIn", userInput);
     localStorage.setItem(LOGIN_KEY,new Date().toLocaleString());
   }else{
     tries++;
@@ -228,11 +228,12 @@ function toggleTheme(){
   themeBtn.textContent=document.body.classList.contains("light")?"🌞":"🌙";
 }
 
+/* ===== Init ===== */
 (function init(){
   const logged=localStorage.getItem("loggedIn");
   const th=localStorage.getItem("theme");
   if(th)document.body.className=th;
-  if(logged==="yes"){document.getElementById("loginBox").style.display="none";}
+  if(logged){document.getElementById("loginBox").style.display="none";}
   renderAll();
 })();
 </script>
