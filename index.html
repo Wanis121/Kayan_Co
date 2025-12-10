@@ -5,153 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kayan Co</title>
 <style>
-*{
-  margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Arial;
-}
-body{
-  background:#0f172a;
-  color:#fff;
-  transition:0.3s;
-}
-body.light{
-  background:#f1f5f9;
-  color:#0f172a;
-}
-
-/* ===== Login ===== */
-.login-box{
-  position:fixed;
-  inset:0;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-.login-card{
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(18px);
-  padding:25px;
-  border-radius:18px;
-  width:100%;max-width:350px;
-  text-align:center;
-  box-shadow:0 10px 40px rgba(0,0,0,0.3);
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Arial;}
+body{background:#0f172a;color:#fff;transition:.3s;}
+body.light{background:#f1f5f9;color:#0f172a;}
+.login-box{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e293b);display:flex;align-items:center;justify-content:center;z-index:9999;}
+.login-card{background:rgba(255,255,255,0.08);backdrop-filter:blur(18px);padding:25px;border-radius:18px;width:100%;max-width:350px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.3);}
 .login-card h2{margin-bottom:15px;font-weight:600}
-.login-card input{
-  width:100%;
-  margin:10px 0;
-  padding:12px;
-  border-radius:12px;
-  border:none;
-  font-size:16px;
-}
-.login-card button{
-  width:100%;
-  padding:12px;
-  background:#22c55e;
-  color:#fff;
-  border:none;
-  border-radius:12px;
-  font-size:17px;
-  cursor:pointer;
-}
+.login-card input{width:100%;margin:10px 0;padding:12px;border-radius:12px;border:none;font-size:16px;}
+.login-card button{width:100%;padding:12px;background:#22c55e;color:#fff;border:none;border-radius:12px;font-size:17px;cursor:pointer;}
 .error{color:#f87171;font-size:14px;margin-top:5px;}
-
-/* ===== Header ===== */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 15px;
-}
-#themeBtn{
-  font-size:22px;
-  background:none;
-  border:none;
-  cursor:pointer;
-}
-
-/* ===== Layout ===== */
-.container{
-  padding:10px;
-  max-width:600px;
-  margin:auto;
-}
-.card{
-  background:rgba(255,255,255,0.08);
-  padding:12px;
-  border-radius:16px;
-  margin-bottom:12px;
-}
-body.light .card{
-  background:#fff;
-  box-shadow:0 4px 15px rgba(0,0,0,0.1);
-}
-
-.title{
-  font-size:18px;
-  margin-bottom:5px;
-  font-weight:600;
-}
-
-/* ===== Table ===== */
-table{width:100%;border-collapse:collapse}
-td{
-  padding:6px;
-}
-input{
-  width:100%;
-  padding:8px;
-  border-radius:10px;
-  border:none;
-}
-
-/* ===== Buttons ===== */
-.add-btn{
-  background:#22c55e;
-  border:none;color:#fff;
-  padding:8px 14px;
-  border-radius:12px;
-  margin-top:5px;
-  cursor:pointer;
-}
-.delete-btn{
-  background:#ef4444;
-  border:none;
-  color:#fff;
-  padding:6px 10px;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-/* ===== Secret Panel ===== */
-#adminPanel{
-  display:none;
-  background:#00000066;
-  backdrop-filter:blur(20px);
-  border-radius:20px;
-  padding:15px;
-  margin-top:10px;
-}
-textarea{
-  width:100%;
-  height:150px;
-  border-radius:12px;
-  padding:10px;
-}
-
-/* ===== Hide export box ===== */
-#exportBox{
-  display:none;
-}
-
-/* ===== Lock Message ===== */
-#lockMsg{
-  color:#fb7185;
-  font-size:14px;
-  margin-top:8px;
-}
+#lockMsg{color:#fb7185;font-size:14px;margin-top:8px;}
+.header{display:flex;justify-content:space-between;align-items:center;padding:10px 15px;}
+#themeBtn{font-size:22px;background:none;border:none;cursor:pointer;}
+.container{padding:10px;max-width:600px;margin:auto;}
+.card{background:rgba(255,255,255,0.08);padding:12px;border-radius:16px;margin-bottom:12px;}
+body.light .card{background:#fff;box-shadow:0 4px 15px rgba(0,0,0,0.1);}
+.title{font-size:18px;margin-bottom:5px;font-weight:600;}
+table{width:100%;border-collapse:collapse;}
+td{padding:6px;}
+input{width:100%;padding:8px;border-radius:10px;border:none;}
+.add-btn{background:#22c55e;border:none;color:#fff;padding:8px 14px;border-radius:12px;margin-top:5px;cursor:pointer;}
+.delete-btn{background:#ef4444;border:none;color:#fff;padding:6px 10px;border-radius:10px;cursor:pointer;}
+#adminPanel{display:none;background:#00000066;backdrop-filter:blur(20px);border-radius:20px;padding:15px;margin-top:10px;}
+textarea{width:100%;height:150px;border-radius:12px;padding:10px;display:none;}
 </style>
 </head>
 <body>
@@ -172,10 +48,10 @@ textarea{
 <div class="header">
   <h3>Kayan Co</h3>
   <button id="themeBtn" onclick="toggleTheme()">🌙</button>
+  <button class="add-btn" onclick="logout()">⎋ تسجيل خروج</button>
 </div>
 
 <div class="container">
-
 <input placeholder="بحث..." oninput="globalSearch(this.value)">
 
 <div class="card">
@@ -202,16 +78,26 @@ textarea{
   <button class="add-btn" onclick="addItem('labs')">إضافة</button>
 </div>
 
-<!-- SECRET -->
+<!-- SECRET PANEL -->
 <div id="adminPanel">
   <h3>لوحة التحكم السرية</h3>
+
+  <!-- إدارة المستخدمين -->
+  <div class="card">
+    <h4>إضافة مستخدم جديد</h4>
+    <input id="newUser" placeholder="Username">
+    <input id="newPass" type="password" placeholder="Password">
+    <input id="confirmPass" type="password" placeholder="Confirm Password">
+    <button class="add-btn" onclick="addNewUser()">➕ إضافة مستخدم</button>
+  </div>
+
+  <!-- بيانات -->
   <button class="add-btn" onclick="exportData()">📤 استخراج البيانات</button>
   <button class="add-btn" onclick="copyData()">📋 نسخ البيانات</button>
   <button class="add-btn" onclick="undo()">↩ رجوع للتعديل السابق</button>
   <button class="add-btn" onclick="showLogs()">📜 عرض السجل</button>
+  
   <textarea id="exportBox"></textarea>
-</div>
-
 </div>
 
 <script>
@@ -220,129 +106,134 @@ const USERS=[
   {u:"kareem m",p:"Kareem123"},
   {u:"wanis s",p:"kajo1234"}
 ];
-
-/* ===== Data ===== */
 const DATA_KEY="kayan_data";
 const LOG_KEY="kayan_logs";
 const HISTORY_KEY="kayan_history";
 const LOGIN_KEY="kayan_last_login";
 
-let data=JSON.parse(localStorage.getItem(DATA_KEY))||{
- doctor:[{name:"جوانتي",price:"25"}],
- salon:[],restaurant:[],labs:[]
-};
+let data=JSON.parse(localStorage.getItem(DATA_KEY))||{doctor:[],salon:[],restaurant:[],labs:[]};
 let logs=JSON.parse(localStorage.getItem(LOG_KEY))||[];
 let history=JSON.parse(localStorage.getItem(HISTORY_KEY))||[];
 
-/* ===== LOGIN ===== */
 let tries=0;
 
+/* ===== Login Function ===== */
 function login(){
- let user=user.value;
- let pass=pass.value;
- let now=Date.now();
+  const userInput=document.getElementById("user").value.trim();
+  const passInput=document.getElementById("pass").value;
+  const now=Date.now();
+  const blockedUntil=localStorage.getItem("blockedUntil")||0;
 
- let blockedUntil=localStorage.getItem("blockedUntil")||0;
- if(now<blockedUntil){
-   lockMsg.textContent="⛔ مقفول مؤقتًا، حاول بعد دقيقة";
-   return;
- }
+  if(now<blockedUntil){
+    document.getElementById("lockMsg").textContent="⛔ مقفول مؤقتًا، حاول بعد دقيقة";
+    return;
+  }
 
- let ok=USERS.find(x=>x.u===user&&x.p===pass);
- if(ok){
-   loginBox.style.display="none";
-   localStorage.setItem(LOGIN_KEY,new Date().toLocaleString());
- }else{
-   tries++;
-   loginError.textContent="❌ بيانات خاطئة";
-   if(tries>=3){
-     localStorage.setItem("blockedUntil", now+60000);
-     lockMsg.textContent="⛔ تم غلق الدخول لمدة دقيقة";
-     tries=0;
-   }
- }
+  const ok=USERS.find(x=>x.u===userInput && x.p===passInput);
+  if(ok){
+    document.getElementById("loginBox").style.display="none";
+    localStorage.setItem("loggedIn","yes");
+    localStorage.setItem(LOGIN_KEY,new Date().toLocaleString());
+  }else{
+    tries++;
+    document.getElementById("loginError").textContent="❌ بيانات خاطئة";
+    if(tries>=3){
+      localStorage.setItem("blockedUntil", now+60000);
+      document.getElementById("lockMsg").textContent="⛔ تم غلق الدخول لمدة دقيقة";
+      tries=0;
+    }
+  }
 }
 
-/* ===== Data Save + Logs ===== */
+/* ===== Logout ===== */
+function logout(){
+  localStorage.removeItem("loggedIn");
+  location.reload();
+}
+
+/* ===== Data + Logs + Undo ===== */
 function save(action){
- history.push(JSON.stringify(data));
- if(history.length>20)history.shift();
- localStorage.setItem(HISTORY_KEY,JSON.stringify(history));
- localStorage.setItem(DATA_KEY,JSON.stringify(data));
- logs.push({action,time:new Date().toLocaleString()});
- localStorage.setItem(LOG_KEY,JSON.stringify(logs));
+  history.push(JSON.stringify(data));
+  if(history.length>20) history.shift();
+  localStorage.setItem(HISTORY_KEY,JSON.stringify(history));
+  localStorage.setItem(DATA_KEY,JSON.stringify(data));
+  logs.push({action,time:new Date().toLocaleString()});
+  localStorage.setItem(LOG_KEY,JSON.stringify(logs));
 }
 
-/* ===== Undo ===== */
 function undo(){
- if(!history.length)return alert("لا يوجد تعديلات");
- data=JSON.parse(history.pop());
- localStorage.setItem(HISTORY_KEY,JSON.stringify(history));
- renderAll();
+  if(!history.length){alert("لا يوجد تعديلات"); return;}
+  data=JSON.parse(history.pop());
+  localStorage.setItem(HISTORY_KEY,JSON.stringify(history));
+  renderAll();
 }
 
 /* ===== Render ===== */
 function render(section){
- let t=document.getElementById(section+"Table");
- t.innerHTML="";
- data[section].forEach((x,i)=>{
-   t.innerHTML+=`
-   <tr>
-    <td><input value="${x.name}" oninput="data.${section}[${i}].name=this.value;save('edit')"></td>
-    <td><input value="${x.price}" oninput="data.${section}[${i}].price=this.value;save('edit')"></td>
-    <td><button class="delete-btn" onclick="delItem('${section}',${i})">×</button></td>
-   </tr>`;
- });
+  let t=document.getElementById(section+"Table");
+  t.innerHTML="";
+  data[section].forEach((x,i)=>{
+    t.innerHTML+=`<tr>
+      <td><input value="${x.name}" oninput="data.${section}[${i}].name=this.value;save('edit')"></td>
+      <td><input value="${x.price}" oninput="data.${section}[${i}].price=this.value;save('edit')"></td>
+      <td><button class="delete-btn" onclick="delItem('${section}',${i})">×</button></td>
+    </tr>`;
+  });
 }
 function renderAll(){["doctor","salon","restaurant","labs"].forEach(render)}
+function addItem(section){data[section].push({name:"",price:""});save('add');render(section);}
+function delItem(section,i){if(confirm("حذف؟")){data[section].splice(i,1);save('delete');render(section);}}
 
-/* ===== Actions ===== */
-function addItem(section){
- data[section].push({name:"",price:""});
- save("add");render(section);
-}
-function delItem(section,i){
- if(confirm("حذف؟")){
-  data[section].splice(i,1);
-  save("delete");render(section);
- }
+/* ===== Secret Panel Functions ===== */
+function addNewUser(){
+  const u=document.getElementById("newUser").value.trim();
+  const p=document.getElementById("newPass").value;
+  const c=document.getElementById("confirmPass").value;
+  if(!u||!p){alert("أدخل اسم المستخدم وكلمة المرور");return;}
+  if(p!==c){alert("كلمة المرور والتأكيد غير متطابقين");return;}
+  USERS.push({u,p});
+  logs.push({action:`إضافة مستخدم: ${u}`,time:new Date().toLocaleString()});
+  localStorage.setItem(LOG_KEY,JSON.stringify(logs));
+  alert("✅ تم إضافة المستخدم بنجاح");
+  document.getElementById("newUser").value="";
+  document.getElementById("newPass").value="";
+  document.getElementById("confirmPass").value="";
 }
 
-/* ===== Export ===== */
+/* ===== Export & Copy & Logs ===== */
 function exportData(){
- exportBox.style.display="block";
- exportBox.value=JSON.stringify(data,null,2);
- exportBox.select();
+  const b=document.getElementById("exportBox");
+  b.style.display="block";
+  b.value=JSON.stringify(data,null,2);
 }
 function copyData(){
- if(!exportBox.value)return;
- navigator.clipboard.writeText(exportBox.value);
- alert("✅ تم النسخ");
+  const b=document.getElementById("exportBox");
+  if(!b.value){alert("استخرج البيانات أولاً");return;}
+  navigator.clipboard.writeText(b.value);
+  alert("✅ تم النسخ");
 }
-
-/* ===== Logs ===== */
 function showLogs(){
- let txt=logs.map(l=>`${l.time} - ${l.action}`).join("\n");
- exportBox.style.display="block";
- exportBox.value=txt;
+  const b=document.getElementById("exportBox");
+  b.style.display="block";
+  b.value=logs.map(l=>`${l.time} - ${l.action}`).join("\n");
 }
 
 /* ===== Search + Secret ===== */
-function globalSearch(v){
- if(v==="kajo0000")adminPanel.style.display="block";
-}
+function globalSearch(v){if(v==="kajo0000")document.getElementById("adminPanel").style.display="block";}
 
 /* ===== Theme ===== */
 function toggleTheme(){
- document.body.classList.toggle("light");
- localStorage.setItem("theme",document.body.className);
- themeBtn.textContent=document.body.classList.contains("light")?"🌞":"🌙";
+  document.body.classList.toggle("light");
+  localStorage.setItem("theme",document.body.className);
+  themeBtn.textContent=document.body.classList.contains("light")?"🌞":"🌙";
 }
 
 (function init(){
- let th=localStorage.getItem("theme");
- if(th)document.body.className=th;
- renderAll();
+  const logged=localStorage.getItem("loggedIn");
+  const th=localStorage.getItem("theme");
+  if(th)document.body.className=th;
+  if(logged==="yes"){document.getElementById("loginBox").style.display="none";}
+  renderAll();
 })();
 </script>
 
