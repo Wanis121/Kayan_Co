@@ -153,6 +153,7 @@ function login(){
     document.getElementById("loginBox").style.display="none";
     localStorage.setItem("loggedIn", userInput);
     localStorage.setItem(LOGIN_KEY,new Date().toLocaleString());
+    openAdmin();
   }else{
     tries++;
     document.getElementById("loginError").textContent="❌ بيانات خاطئة";
@@ -207,6 +208,7 @@ function addProducts(){
   history.push(JSON.stringify(data));
   localStorage.setItem(DATA_KEY,JSON.stringify(data));
   localStorage.setItem(LOG_KEY,JSON.stringify(logs));
+  localStorage.setItem(HISTORY_KEY,JSON.stringify(history));
   renderAll();
   document.getElementById("newProducts").value="";
   alert("✅ تم إضافة المنتجات");
@@ -253,7 +255,7 @@ function toggleTheme(){
   const logged=localStorage.getItem("loggedIn");
   const th=localStorage.getItem("theme");
   if(th)document.body.className=th;
-  if(logged){document.getElementById("loginBox").style.display="none";}
+  if(logged){document.getElementById("loginBox").style.display="none";openAdmin();}
   renderAll();
 })();
 </script>
