@@ -6,227 +6,119 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="logo.png">
 
-<!-- حماية بالباسورد -->
-<script>
-(function(){
-  const PASSWORD = "WizoKimo0000";
-  let userPass = localStorage.getItem("kayan_access");
-  if(userPass !== PASSWORD){
-    setTimeout(() => {
-      let input = prompt("أدخل كلمة المرور:");
-      if(input === PASSWORD){
-        localStorage.setItem("kayan_access", PASSWORD);
-        location.reload();
-      }else{
-        document.documentElement.innerHTML = "";
-      }
-    }, 100);
-  }
-})();
-</script>
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Tahoma;}
 body{direction:rtl;background:#1c1c1c;color:#fff;padding:15px;transition:.4s ease;}
 body.light{background:#f1f5f9;color:#000;}
-.box{max-width:1100px;margin:auto;background:#222;padding:20px;border-radius:16px;box-shadow:0 0 20px #000;animation:fade .7s ease;}
-@keyframes fade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.box{max-width:1100px;margin:auto;background:#222;padding:20px;border-radius:16px;box-shadow:0 0 20px #000;}
 .top-bar{display:flex;align-items:center;justify-content:space-between;}
-.logo{display:flex;align-items:center;gap:10px;}
-.logo img{width:55px;animation:float 3s ease-in-out infinite;}
-@keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-5px);}100%{transform:translateY(0);}}
-.logo-text{font-size:20px;font-weight:bold;background:linear-gradient(90deg,#00ffd5,#00aaff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.theme-btn{
-  font-size:20px;width:45px;height:45px;border-radius:50%;
-  display:flex;justify-content:center;align-items:center;
-  cursor:pointer;border:none;transition:.3s;
-  background:#444; /* تم تغييره للون الأسود الفاتح */
-}
-.theme-btn:hover{transform:scale(1.1);}
-.section{margin-top:25px;padding:15px;border-radius:16px;background:#2a2a2a;animation:fadein .5s ease;}
-@keyframes fadein{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-h2{margin-bottom:10px;}
+.logo img{width:50px}
+.section{margin-top:25px;padding:15px;border-radius:16px;background:#2a2a2a;}
 table{width:100%;border-collapse:collapse;margin-top:10px;}
 th,td{padding:10px;border-bottom:1px solid #333;text-align:center;}
-th{background:#111;}
-body.light th{background:#e0e0e0;}
-input, select{width:100%;padding:8px;border:none;border-radius:10px;background:#333;color:#fff;text-align:center;margin-bottom:10px;}
-body.light input, body.light select{background:#f1f1f1;color:#000;}
-button{border:none;border-radius:10px;padding:8px 12px;cursor:pointer;font-weight:bold;transition:.25s ease;}
-button:hover{transform:scale(1.05);}
-.add-btn{width:100%;margin-top:10px;background:#00ffd5;color:#000;}
-.delete-btn{background:#dc3545;color:#fff;}
-#globalResults{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
-.card{background:#333;padding:10px;border-radius:12px;width:calc(25% - 10px);box-shadow:0 0 10px #000;transition:.3s;}
-.card:hover{transform:scale(1.05);background:#444;}
-body.light .card{background:#e0e0e0;color:#000;}
-body.light .card:hover{background:#ccc;}
-#signature{text-align:left;margin-top:20px;font-size:14px;color:#888;}
-body.light #signature{color:#555;}
+input,select{width:100%;padding:8px;border-radius:10px;border:none;background:#333;color:#fff;margin-bottom:10px;}
+button{border:none;border-radius:10px;padding:10px;width:100%;cursor:pointer;background:#00ffd5;color:#000;font-weight:bold;}
+.card{background:#333;padding:10px;border-radius:10px;margin:5px}
 </style>
 </head>
+
 <body>
 <div class="box">
-  <div class="top-bar">
-    <div class="logo">
-      <img src="logo.png">
-      <div class="logo-text">Kayan Co</div>
-    </div>
-    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌞</button>
-  </div>
 
-  <!-- بحث عام -->
-  <div class="section">
-    <h2>بحث عام في جميع الأقسام</h2>
-    <select id="globalFilter" onchange="globalSearch(document.getElementById('globalSearch').value)">
-      <option value="all">جميع الأقسام</option>
-      <option value="doctor">الأطباء</option>
-      <option value="salon">الكوافير</option>
-      <option value="restaurant">المطاعم</option>
-      <option value="labs">المعامل</option>
-    </select>
-    <input type="text" id="globalSearch" placeholder="اكتب اسم الصنف..." oninput="globalSearch(this.value)">
-    <div id="globalResults"></div>
+<div class="top-bar">
+  <div class="logo">
+    <img src="logo.png">
+    <b>Kayan Co</b>
   </div>
+</div>
 
-  <!-- 🩺 الأطباء -->
-  <div class="section" id="doctors">
-    <h2>مستلزمات العيادات والأطباء</h2>
-    <input type="text" placeholder="بحث في الأطباء..." oninput="filterSection('doctor', this.value)">
-    <table><thead>
-      <tr><th>الصنف</th><th>السعر</th><th>حذف</th></tr>
-    </thead><tbody id="doctorTable"></tbody></table>
-    <button class="add-btn" onclick="addItem('doctor')">+ إضافة صنف</button>
-  </div>
+<div class="section">
+  <h2>بحث عام</h2>
+  <select id="globalFilter" onchange="searchAll()">
+    <option value="all">كل الأقسام</option>
+    <option value="doctor">الأطباء</option>
+    <option value="salon">الكوافير</option>
+    <option value="restaurant">المطاعم</option>
+    <option value="labs">المعامل</option>
+  </select>
+  <input type="text" id="globalSearch" placeholder="اكتب اسم الصنف..." oninput="searchAll()">
+  <div id="globalResults"></div>
+</div>
 
-  <!-- 💇‍♂️ الكوافير -->
-  <div class="section" id="salon">
-    <h2>مستلزمات الكوافير</h2>
-    <input type="text" placeholder="بحث في الكوافير..." oninput="filterSection('salon', this.value)">
-    <table><thead>
-      <tr><th>الصنف</th><th>السعر</th><th>حذف</th></tr>
-    </thead><tbody id="salonTable"></tbody></table>
-    <button class="add-btn" onclick="addItem('salon')">+ إضافة صنف</button>
-  </div>
+<div id="sections"></div>
 
-  <!-- 🍽️ المطاعم -->
-  <div class="section" id="restaurant">
-    <h2>مستلزمات المطاعم</h2>
-    <input type="text" placeholder="بحث في المطاعم..." oninput="filterSection('restaurant', this.value)">
-    <table><thead>
-      <tr><th>الصنف</th><th>السعر</th><th>حذف</th></tr>
-    </thead><tbody id="restaurantTable"></tbody></table>
-    <button class="add-btn" onclick="addItem('restaurant')">+ إضافة صنف</button>
-  </div>
-
-  <!-- 🧪 المعامل -->
-  <div class="section" id="labs">
-    <h2>مستلزمات المعامل</h2>
-    <input type="text" placeholder="بحث في المعامل..." oninput="filterSection('labs', this.value)">
-    <table><thead>
-      <tr><th>الصنف</th><th>السعر</th><th>حذف</th></tr>
-    </thead><tbody id="labsTable"></tbody></table>
-    <button class="add-btn" onclick="addItem('labs')">+ إضافة صنف</button>
-  </div>
-
-  <div id="signature">By: Wanis Samir</div>
 </div>
 
 <script>
-const DATA_KEY = "kayan_full_list";
+let data = {};
 
-let data = JSON.parse(localStorage.getItem(DATA_KEY)) || {
-  doctor: [{name:"جوانتي لاتكس",price:"25"},{name:"كمامات طبية",price:"20"}],
-  salon: [{name:"جوانتي نايلون",price:"10"},{name:"كحول 70%",price:"15"}],
-  restaurant: [{name:"قفازات طعام",price:"12"},{name:"مناديل مبللة",price:"8"}],
-  labs: [{name:"أنابيب اختبار",price:"30"},{name:"قفازات مختبر",price:"20"}]
-};
+fetch("data.json?ver=" + Date.now())
+  .then(r => r.json())
+  .then(json => {
+    data = json;
+    renderSections();
+  });
 
-function save(){localStorage.setItem(DATA_KEY, JSON.stringify(data));}
+function renderSections(){
+  let container = document.getElementById("sections");
+  container.innerHTML = "";
+
+  for(let section in data){
+    let div = document.createElement("div");
+    div.className = "section";
+
+    div.innerHTML = `<h2>${translate(section)}</h2>
+    <table>
+      <thead>
+        <tr><th>الصنف</th><th>السعر</th></tr>
+      </thead>
+      <tbody id="${section}Table"></tbody>
+    </table>`;
+
+    container.appendChild(div);
+    render(section);
+  }
+}
 
 function render(section){
   let table = document.getElementById(section+"Table");
   table.innerHTML = "";
-  data[section].forEach((item,i)=>{
+
+  data[section].forEach(item=>{
     table.innerHTML += `
       <tr>
-        <td><input value="${item.name}" oninput="data.${section}[${i}].name=this.value;save()"></td>
-        <td><input value="${item.price}" oninput="data.${section}[${i}].price=this.value;save()"></td>
-        <td><button class="delete-btn" onclick="deleteItem('${section}',${i})">X</button></td>
+        <td>${item.name}</td>
+        <td>${item.price}</td>
       </tr>
     `;
   });
 }
 
-function addItem(section){
-  data[section].push({name:"",price:""});
-  save(); render(section);
-}
+function searchAll(){
+  let q = document.getElementById("globalSearch").value.toLowerCase();
+  let filter = document.getElementById("globalFilter").value;
+  let box = document.getElementById("globalResults");
+  box.innerHTML = "";
 
-function deleteItem(section,i){
-  if(confirm("حذف الصنف؟")){
-    data[section].splice(i,1);
-    save(); render(section);
-  }
-}
-
-function toggleTheme(){
-  document.body.classList.toggle("light");
-  localStorage.setItem("theme", document.body.className);
-  updateThemeButton();
-}
-
-function updateThemeButton(){
-  const btn = document.getElementById("themeBtn");
-  if(document.body.classList.contains("light")){
-    btn.textContent = "🌞";
-  } else {
-    btn.textContent = "🌙";
-  }
-}
-
-(function(){
-  let th = localStorage.getItem("theme");
-  if(th) document.body.className = th;
-  updateThemeButton();
-})();
-
-function filterSection(section, query){
-  query = query.toLowerCase();
-  let table = document.getElementById(section+"Table");
-  table.innerHTML = "";
-  data[section].forEach((item,i)=>{
-    if(item.name.toLowerCase().includes(query)){
-      table.innerHTML += `
-        <tr>
-          <td><input value="${item.name}" oninput="data.${section}[${i}].name=this.value;save()"></td>
-          <td><input value="${item.price}" oninput="data.${section}[${i}].price=this.value;save()"></td>
-          <td><button class="delete-btn" onclick="deleteItem('${section}',${i})">X</button></td>
-        </tr>
-      `;
-    }
-  });
-}
-
-function globalSearch(query){
-  query = query.toLowerCase();
-  const filter = document.getElementById("globalFilter").value;
-  let container = document.getElementById("globalResults");
-  container.innerHTML = "";
   for(let section in data){
     if(filter !== "all" && filter !== section) continue;
     data[section].forEach(item=>{
-      if(item.name.toLowerCase().includes(query)){
-        let div = document.createElement("div");
-        div.className = "card";
-        div.innerHTML = `<h4>${item.name}</h4><p>القسم: ${section}</p><p>السعر: ${item.price}</p>`;
-        container.appendChild(div);
+      if(item.name.toLowerCase().includes(q)){
+        box.innerHTML += `<div class="card">${item.name} - ${item.price}</div>`;
       }
     });
   }
 }
 
-["doctor","salon","restaurant","labs"].forEach(render);
+function translate(key){
+  return {
+    doctor:"الأطباء",
+    salon:"الكوافير",
+    restaurant:"المطاعم",
+    labs:"المعامل"
+  }[key];
+}
 </script>
+
 </body>
 </html>
